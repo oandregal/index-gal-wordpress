@@ -62,15 +62,18 @@ function App() {
 	const fields = [
 		{
 			id: 'title',
-			header: 'Title'
+			header: 'Title',
+			enableGlobalSearch: true,
 		},
 		{
 			id: 'description',
-			header: 'Description'
+			header: 'Description',
+			enableGlobalSearch: true,
 		},
 		{
 			id: 'author',
-			header: 'Author'
+			header: 'Author',
+			enableGlobalSearch: true,
 		},
 		{
 			id: 'date',
@@ -79,7 +82,9 @@ function App() {
 	];
 
 	const onChangeView = (view) => {
+		console.log('input: ', 'view ', view, 'fields ', fields, 'data ', data );
 		const { data: newData, paginationInfo: newPaginationInfo } = filterSortAndPaginate(data, view, fields);
+		console.log( 'output ', newData );
 		setView(view);
 		setData( newData );
 		setPaginationInfo( newPaginationInfo );
