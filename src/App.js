@@ -9,44 +9,50 @@ const FULL_DATASET = [
 		id: 1,
 		title: 'First',
 		description: 'Description for the first item.',
-		author: 'Author',
+		author: 'author',
 		date: "2012-01-23T18:25:43.511Z",
 	},
 	{
 		id: 2,
 		title: 'Second',
 		description: 'Description for the second item.',
-		author: 'Editor',
+		author: 'editor',
 		date: "2012-02-23T18:25:43.511Z",
 	},
 	{
 		id: 3,
 		title: 'Third',
 		description: 'Description for the third item.',
-		author: 'Admin',
+		author: 'admin',
 		date: "2012-03-23T18:25:43.511Z",
 	},
 	{
 		id: 4,
 		title: 'Fourth',
 		description: 'Description for the fourth item.',
-		author: 'Author',
+		author: 'author',
 		date: "2012-04-23T18:25:43.511Z",
 	},
 	{
 		id: 5,
 		title: 'Fifth',
 		description: 'Description for the fifth item.',
-		author: 'Editor',
+		author: 'editor',
 		date: "2012-05-23T18:25:43.511Z",
 	},
 	{
 		id: 6,
 		title: 'Sixth',
 		description: 'Description for the sixth item.',
-		author: 'Admin',
+		author: 'admin',
 		date: "2012-06-23T18:25:43.511Z",
 	},
+];
+
+const AUTHORS = [
+	{ value: 'admin', label: 'Admin' },
+	{ value: 'author', label: 'Author' },
+	{ value: 'editor', label: 'Editor' },
 ];
 
 function App() {
@@ -77,7 +83,9 @@ function App() {
 		{
 			id: 'author',
 			header: 'Author',
+			render: ({item}) => AUTHORS.find( author => author.value === item.author )?.label || item.author,
 			enableGlobalSearch: true,
+			elements: AUTHORS,
 		},
 		{
 			id: 'date',
