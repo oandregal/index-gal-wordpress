@@ -295,6 +295,8 @@ function App() {
 		hiddenFields: [],
 		layout: {
 			primaryField: 'nome',
+			badgeFields: ['provincia'], // TODO: feature unreleased.
+			columnFields: ['km_cadrados'], // TODO: feature unreleased.
 		},
 		filters: [],
 	});
