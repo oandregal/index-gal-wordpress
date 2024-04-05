@@ -293,6 +293,7 @@ function App() {
 	const [view, setView] = useState({
 		type: 'table',
 		hiddenFields: [],
+		perPage: 10,
 		layout: {
 			primaryField: 'nome',
 			badgeFields: ['provincia'], // TODO: feature unreleased.
