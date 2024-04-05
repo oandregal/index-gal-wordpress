@@ -58,7 +58,9 @@ function App() {
 	const [view, setView] = useState({
 		type: 'table',
 		hiddenFields: [],
-		layout: {},
+		layout: {
+			primaryField: 'title',
+		},
 		filters: [],
 	});
 	const fields = [
