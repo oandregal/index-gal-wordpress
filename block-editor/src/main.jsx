@@ -1,4 +1,4 @@
-import { createElement, useState } from "react";
+import { useState } from "react";
 import { createRoot } from 'react-dom/client';
 import {
   BlockEditorProvider,
@@ -21,11 +21,19 @@ registerCoreBlocks();
 function Editor() {
   const [blocks, setBlocks] = useState([]);
   return (
+    /*
+        The BlockEditorProvider is the wrapper of the block editor's state.
+        All the UI elements of the block editor need to be rendered within this provider.
+      */
     <BlockEditorProvider
       value={blocks}
       onChange={setBlocks}
       onInput={setBlocks}
     >
+      {/*
+          The BlockCanvas component renders the block list within an iframe
+          and wire up all the necessary events to make the block editor work.
+        */}
       <BlockCanvas height="500px" />
     </BlockEditorProvider>
   );
