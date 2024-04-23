@@ -41,7 +41,6 @@ function App() {
 		{
 			id: 'provincia',
 			header: 'Provincia',
-			render: ({ item }) => item.provincia,
 			enableGlobalSearch: true,
 			elements: PROVINCIAS,
 		},
