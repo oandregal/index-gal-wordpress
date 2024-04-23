@@ -65,7 +65,13 @@ function App() {
 	}
 
 	return (
-		<DataViews data={data} view={view} fields={fields} paginationInfo={paginationInfo} onChangeView={onChangeView} />
+		<DataViews
+			data={data}
+			fields={fields}
+			view={view}
+			onChangeView={onChangeView}
+			paginationInfo={paginationInfo}
+		/>
 	);
 }
 
