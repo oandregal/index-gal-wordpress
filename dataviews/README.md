@@ -17,6 +17,11 @@ npm start
 
 Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+There's a couple of extra examples as branches that you can checkout:
+
+- 5-dataviews-actions: how to declare actions to be performed on the records
+- 6-dataviews-filter-by: how to configure the existing filters
+
 ## Coda
 
 This demo has been bootstrapped with [Create React App](https://github.com/facebook/create-react-app) for testing purposes as part of a [talk about WordPress](https://index.gal/). It favors educational code, it's not production ready.
