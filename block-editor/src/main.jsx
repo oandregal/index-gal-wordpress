@@ -20,12 +20,8 @@ import "@wordpress/block-library/build-style/editor.css";
 registerCoreBlocks();
 
 const htmlContent = `
-<!-- wp:heading -->
 <h2>Ola, index.gal</h2>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
 <p>Esto é un editor de bloques.</p>
-<!-- /wp:paragraph -->
 `;
 
 // HTML => Blocks.
