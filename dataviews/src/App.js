@@ -6,6 +6,15 @@ import '@wordpress/components/build-style/style.css';
 
 import { MUNICIPIOS, PROVINCIAS } from './data';
 
+/*
+ * The pt-PT format use spaces as thousands separator,
+ * as recommended by BIPM and SI.
+ * https://en.wikipedia.org/wiki/Decimal_separator#Digit_grouping
+ *
+ * See also https://wikidog.xunta.gal/index.php/Escrita_dos_n%C3%BAmeros
+ */
+const formatNumber = (number) => new Intl.NumberFormat('pt-PT').format(number);
+
 function App() {
 	const [data, setData] = useState(MUNICIPIOS);
 
@@ -15,7 +24,7 @@ function App() {
 	});
 	const [view, setView] = useState({
 		type: 'table',
-		hiddenFields: [ 'imaxe_src' ],
+		hiddenFields: ['imaxe_src'],
 		perPage: 10,
 		layout: {
 			primaryField: 'nome',
@@ -47,11 +56,13 @@ function App() {
 		{
 			id: 'habitantes',
 			header: 'Nro hab.',
+			render: ({ item }) => formatNumber(item.habitantes),
 			enableSorting: false, // filterSortAndPaginate cannot sort by number types yet.
 		},
 		{
 			id: 'km_cadrados',
 			header: 'Extensión (km2)',
+			render: ({ item }) => formatNumber(item.km_cadrados),
 			enableSorting: false, // filterSortAndPaginate cannot sort by number types yet.
 		}
 	];
