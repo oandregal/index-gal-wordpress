@@ -1,5 +1,6 @@
 import { DataViews, filterSortAndPaginate } from '@wordpress/dataviews';
 import { useState } from 'react';
+import { external } from '@wordpress/icons';
 
 import '@wordpress/dataviews/build-style/style.css';
 import '@wordpress/components/build-style/style.css';
@@ -74,6 +75,32 @@ function App() {
 		setPaginationInfo(newPaginationInfo);
 	}
 
+	const actions = [
+		{
+			id: 'view',
+			label: 'Ver',
+			isPrimary: true,
+			icon: external,
+			callback: (items) => {
+				window.open( items[0].imaxe_url, '_blank' );
+			},
+		},
+		{
+			id: 'delete',
+			label: 'Eliminar',
+			supportsBulk: true,
+			hideModalHeader: true,
+			isEligible: ( { provincia } ) => provincia !== 'Lugo',
+			RenderModal: ( { items, closeModal, onActionPerformed } ) => {
+				return (
+					<div>
+						<p>Non é posíbel eliminar este concello.</p>
+					</div>
+				);
+			},
+		},
+	];
+
 	return (
 		<DataViews
 			data={data}
@@ -81,6 +108,7 @@ function App() {
 			view={view}
 			onChangeView={onChangeView}
 			paginationInfo={paginationInfo}
+			actions={actions}
 		/>
 	);
 }
