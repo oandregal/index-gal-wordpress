@@ -52,6 +52,10 @@ function App() {
 			header: 'Provincia',
 			enableGlobalSearch: true,
 			elements: PROVINCIAS,
+			filterBy: {
+				isPrimary: true,
+				operators: ['is'],
+			}
 		},
 		{
 			id: 'habitantes',
