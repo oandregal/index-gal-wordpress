@@ -16,6 +16,10 @@ import "@wordpress/block-library/build-style/common.css";
 import "@wordpress/block-library/build-style/style.css";
 import "@wordpress/block-library/build-style/editor.css";
 
+// Import and register formats.
+import '@wordpress/format-library';
+import '@wordpress/format-library/build-style/style.css';
+
 // Register the default core block types.
 registerCoreBlocks();
 
