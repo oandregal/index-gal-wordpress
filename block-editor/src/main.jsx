@@ -7,6 +7,8 @@ import {
 import { registerCoreBlocks } from "@wordpress/block-library";
 import { serialize, parse } from '@wordpress/blocks';
 
+import { useStateWithHistory } from '@wordpress/compose';
+
 // Default styles that are needed for the editor.
 import "@wordpress/components/build-style/style.css";
 import "@wordpress/block-editor/build-style/style.css";
@@ -32,15 +34,12 @@ const htmlContent = `
 <!-- /wp:paragraph -->
 `;
 
-// HTML => Blocks.
 const blocksInitialState = parse(htmlContent);
-console.log( blocksInitialState );
 
 function Editor() {
-  const [blocks, setBlocks] = useState( blocksInitialState );
+  const { value, setValue, hasUndo, hasRedo, undo, redo } = useStateWithHistory({ blocks: blocksInitialState });
 
-  // Blocks => HTML.
-  console.log( serialize( blocks ) );
+  console.log(value.blocks);
 
   return (
     /*
@@ -48,10 +47,23 @@ function Editor() {
         All the UI elements of the block editor need to be rendered within this provider.
       */
     <BlockEditorProvider
-      value={blocks}
-      onChange={setBlocks}
-      onInput={setBlocks}
+      value={value.blocks}
+      selection={value.selection}
+      onChange={(blocks, { selection }) =>
+        setValue({ blocks, selection }, false)
+      }
+      onInput={(blocks, { selection }) =>
+        setValue({ blocks, selection }, true)
+      }
     >
+      <div className="undo-redo-toolbar">
+        <button onClick={undo} disabled={!hasUndo}>
+          Undo
+        </button>
+        <button onClick={redo} disabled={!hasRedo}>
+          Redo
+        </button>
+      </div>
       {/*
           The BlockCanvas component renders the block list within an iframe
           and wire up all the necessary events to make the block editor work.
