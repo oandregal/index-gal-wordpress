@@ -5,6 +5,7 @@ import {
   BlockCanvas,
 } from "@wordpress/block-editor";
 import { registerCoreBlocks } from "@wordpress/block-library";
+import { serialize, parse } from '@wordpress/blocks';
 
 // Default styles that are needed for the editor.
 import "@wordpress/components/build-style/style.css";
@@ -18,8 +19,25 @@ import "@wordpress/block-library/build-style/editor.css";
 // Register the default core block types.
 registerCoreBlocks();
 
+const htmlContent = `
+<!-- wp:heading -->
+<h2>Ola, index.gal</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Esto é un editor de bloques.</p>
+<!-- /wp:paragraph -->
+`;
+
+// HTML => Blocks.
+const blocksInitialState = parse(htmlContent);
+console.log( blocksInitialState );
+
 function Editor() {
-  const [blocks, setBlocks] = useState([]);
+  const [blocks, setBlocks] = useState( blocksInitialState );
+
+  // Blocks => HTML.
+  console.log( serialize( blocks ) );
+
   return (
     /*
         The BlockEditorProvider is the wrapper of the block editor's state.
